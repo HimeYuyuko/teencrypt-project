@@ -116,23 +116,6 @@ void rsa_encrypt(ta_attrs *ta, TEEC_Operation* op)
 	printf("\nThe text sent was encrypted: %s\n", (char *)op->params[1].tmpref.buffer);
 }
 
-// void rsa_decrypt(ta_attrs *ta, TEEC_Operation* op)
-// {
-// 	puts("\n============ RSA DECRYPT CA SIDE ============");
-
-// 	uint32_t origin;
-
-// 	TEEC_Result res = TEEC_InvokeCommand(&ta->sess, RSA_DEC, 
-// 		op, &origin);
-// 	if (res != TEEC_SUCCESS)
-// 		errx(1, "\nTEEC_InvokeCommand(TA_RSA_CMD_DECRYPT) failed 0x%x origin 0x%x\n",
-// 			res, origin);
-
-// 	printf("\nThe text sent was decrypted: %s\n", (char *)op->params[1].tmpref.buffer);
-// }
-
-// rsa end
-
 static size_t get_file_size(FILE* fp) {
 	fseek(fp, 0, SEEK_END);
 	size_t fileSize = ftell(fp);
@@ -257,17 +240,7 @@ int main(int argc, char* argv[])
 			strcpy(modifiedFileName, fileName);
 			strcat(modifiedFileName, ".rsa");
 		}
-		// else if (!strcmp(argv[1], "-d")) {
-		// 	word in = {(char*) calloc(RSA_CIPHER_LEN_1024, 1), RSA_CIPHER_LEN_1024};
-		// 	word out = {(char*) calloc(RSA_MAX_PLAIN_LEN_1024, 1), RSA_MAX_PLAIN_LEN_1024};
-
-		// 	prepare_op(&op, &in, &out);
-		// 	fread(in.buffer, 1, in.length, fp);
-		// 	//
-		// 	rsa_decrypt(&ta, &op);
-		// 	fp = freopen("/root/decrypted_rsa.txt", "w", fp);
-		// 	fwrite(out.buffer, 1, strlen(out.buffer), fp);
-		// }
+		
 		else{
 			goto no_option;
 		}
